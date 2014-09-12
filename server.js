@@ -45,25 +45,12 @@ db.once('open', function callback() {
 });
 
 
-// MONGOOSE SCHEMAS
-var messageSchema = mongoose.Schema({
-    message: String
-});
-var Message = mongoose.model('Message', messageSchema);
-var mongoMessage;
-Message.findOne().exec(function (err, messageDoc) {
-    mongoMessage = messageDoc.message;
-});
-
-
 // ROUTING
 app.get('/partials/:partialPath', function (req, resp) {
     resp.render('partials/' + req.params.partialPath);
 })
 app.get('*', function (request, response) {
-    response.render('index', {
-        mongoMessage: mongoMessage
-    });
+    response.render('index');
 })
 
 
