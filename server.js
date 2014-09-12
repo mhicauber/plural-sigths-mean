@@ -37,6 +37,7 @@ if (env === 'development') {
 } else {
     mongoose.connect('mongodb://mhicauber:multivision@ds063929.mongolab.com:63929/multivision');
 }
+console.log("============> env == " + env);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
