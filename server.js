@@ -12,9 +12,6 @@ var app = express();
 // UTIILITY FUNCTIONS / VARS
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-function compile(str, path) {
-    return stylus(str).set('filename', path);
-}
 
 
 // MODULES CONFIGURATION
@@ -25,7 +22,9 @@ app.use(bodyParser());
 app.use(stylus.middleware(
     {
         src: __dirname + '/public',
-        compile: compile
+        compile: function(str, path) {
+            return stylus(str).set('filename', path);
+        }
     }
 ));
 app.use(express.static(__dirname + '/public'));
