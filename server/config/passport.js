@@ -4,6 +4,7 @@ var passport = require('passport'),
     User = mongoose.model('User');
 
 module.exports = function() {
+    // tell passport to use local strategy
     passport.use(new LocalStrategy(
         function(username, password, done) {
             User.findOne({username:username}).exec(function(err, user) {

@@ -14,7 +14,7 @@ exports.authenticate = function (req, res, next) {
             }
             res.send({success: true, user: user});
         })
-    })
+    });
     auth(req, res, next);
 };
 
